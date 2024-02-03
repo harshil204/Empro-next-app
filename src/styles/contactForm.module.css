@@ -1,0 +1,80 @@
+.container {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65),
+    rgba(32, 58, 67, 0.65),
+    rgba(0, 0, 0, 0.65)
+  );
+  width: 80%;
+  height: 450px;
+  margin: 50px auto;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.formHeading {
+  font-family: "poppins";
+  color: white;
+  text-align: center;
+}
+
+.form {
+  /* background-color: rgba(0, 255, 255, 0.349); */
+  width: 400px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.list {
+  list-style: none;
+}
+
+.inputField {
+  width: 340px;
+  padding: 5px 0;
+  background-color: transparent;
+  font-family: "quicksand";
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid white;
+  color: white;
+  letter-spacing: 2px;
+  margin: 15px auto;
+}
+
+.textarea {
+  margin: 15px auto;
+  width: 340px;
+  padding: 5px 0;
+  background-color: transparent;
+  font-family: "quicksand";
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid white;
+  color: white;
+  letter-spacing: 2px;
+  resize: none;
+}
+
+.submitFormButton {
+  background: linear-gradient(
+    to right,
+    rgba(195, 20, 50, 0.8),
+    rgba(36, 11, 54, 0.8)
+  );
+  font-family: "quicksand";
+  font-size: 18px;
+  width: 45%;
+  height: 45px;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  margin: 25px auto;
+  margin-bottom: 25px;
+}

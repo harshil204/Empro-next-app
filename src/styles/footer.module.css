@@ -1,0 +1,24 @@
+.footerContainer {
+  position: absolute;
+  bottom: 6px;
+  width: 100%;
+  height: 20px;
+}
+
+.footerLine {
+    font-size: 12px;
+  text-align: center;
+  color: white;
+  font-family: "poppins";
+}
+
+
+@media (max-width: 900px) {
+  .footerContainer {
+    position: relative;
+    /* bottom: 6px;
+    width: 100%;
+    height: 20px; */
+  } 
+  
+}

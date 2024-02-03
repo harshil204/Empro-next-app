@@ -1,0 +1,39 @@
+.container {
+  width: 30%;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dp {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.contentContainer {
+  margin-top: -45px;
+}
+
+.name {
+  font-family: "quicksand";
+  color: white;
+  text-align: center;
+}
+
+.role {
+  font-size: 15px;
+  font-family: "quicksand";
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .contentContainer {
+    width: 200px;
+    margin-top: -65px;
+  }
+}

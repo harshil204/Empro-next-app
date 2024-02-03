@@ -1,0 +1,77 @@
+.backImage {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-image: url("../../../public/img/backImage.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+}
+
+.container {
+  margin-top: 85px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65),
+    rgba(32, 58, 67, 0.65),
+    rgba(0, 0, 0, 0.65)
+  );
+  width: 80%;
+  height: 450px;
+  margin: 60px auto;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.heading {
+  color: white;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.paragraphContainer {
+  width: 80%;
+  min-height: 320px;
+}
+
+.pTag {
+  color: whitesmoke;
+  font-family: "quicksand";
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.65),
+      rgba(32, 58, 67, 0.65),
+      rgba(0, 0, 0, 0.65)
+    );
+    width: 85%;
+    height: auto;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .heading {
+    margin-top: 20px;
+  }
+
+  .paragraphContainer {
+    text-align: center;
+    width: 90%;
+    min-height: 100px;
+    max-height: 480px;
+    overflow-x: scroll;
+    margin: 20px 0;
+  }
+}
