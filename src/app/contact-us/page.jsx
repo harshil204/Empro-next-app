@@ -7,8 +7,9 @@ const page = () => {
   return (
     <div className={styles?.backImage}>
       <Header />
-
-      <ContactUs />
+      <div className={styles?.bgContainer}>
+        <ContactUs />
+      </div>
       <Footer />
     </div>
   );

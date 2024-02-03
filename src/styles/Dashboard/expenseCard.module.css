@@ -1,0 +1,60 @@
+.container {
+    width: 520px;
+    height: 260px;
+    padding: 45px;
+    /* background-color: rgba(173, 230, 182, 0.315); */
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1.5fr 0.2fr 3fr;
+    overflow: hidden;
+    gap: 5px;
+}
+
+.verticalLine {
+    height: 80%;
+    width: 1px;
+    background-color: white;
+}
+
+.image {
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.rightContent {
+    /* background-color: rgba(255, 228, 196, 0.342); */
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-family: "quicksand";
+    color: white;
+}
+
+.expenseSubject {
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 15px;
+}
+
+.expenseDesc {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.statusButton {
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2B9A72;
+}
+
+.reportedToText {
+    font-weight: 400;
+    font-size: 15px;
+}

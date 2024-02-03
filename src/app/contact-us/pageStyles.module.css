@@ -10,20 +10,25 @@
 }
 
 .container {
-    margin-top: 85px;
-    background: linear-gradient(
-      to right,
+  margin-top: 85px;
+  background: linear-gradient(to right,
       rgba(0, 0, 0, 0.65),
       rgba(32, 58, 67, 0.65),
-      rgba(0, 0, 0, 0.65)
-    );
-    width: 80%;
-    height: 450px;
-    margin: 60px auto;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
+      rgba(0, 0, 0, 0.65));
+  width: 80%;
+  height: 450px;
+  margin: 60px auto;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+}

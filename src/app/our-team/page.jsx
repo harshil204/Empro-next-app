@@ -11,25 +11,27 @@ const page = () => {
     <>
       <div className={styles?.backImage}>
         <Header />
-        <div className={styles?.container}>
-          <h4 className={styles?.heading}>Our Team</h4>
+        <div className={styles?.bgContainer}>
+          <div className={styles?.container}>
+            <h4 className={styles?.heading}>Our Team</h4>
 
-          <div className={styles?.contentContainer}>
-            <TeamMemberCard
-              image={depp}
-              name={"Johnny Depp"}
-              role={"Full-stack Developer"}
-            />
-            <TeamMemberCard
-              image={snow}
-              name={"Jon Snow"}
-              role={"Back-end Expert"}
-            />
-            <TeamMemberCard
-              image={lannister}
-              name={"Tyrion Lannister"}
-              role={"Frontend developer"}
-            />
+            <div className={styles?.contentContainer}>
+              <TeamMemberCard
+                image={depp}
+                name={"Johnny Depp"}
+                role={"Full-stack Developer"}
+              />
+              <TeamMemberCard
+                image={snow}
+                name={"Jon Snow"}
+                role={"Back-end Expert"}
+              />
+              <TeamMemberCard
+                image={lannister}
+                name={"Tyrion Lannister"}
+                role={"Frontend developer"}
+              />
+            </div>
           </div>
         </div>
         <Footer />
