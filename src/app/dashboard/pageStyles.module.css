@@ -9,10 +9,17 @@
   overflow: auto;
 }
 
+.upperBodyContainer {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: self-end;
+}
+
 .headingContainer {
   width: 465px;
-  /* background-color: cadetblue; */
-  margin-left: 12.5%;
   margin-top: 30px;
   padding: 10px 0;
   border-bottom: 2px solid white;
@@ -38,4 +45,24 @@
   grid-template-rows: auto;
   gap: 10px;
   padding: 20px;
+}
+
+.addNewButton {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2B9A72;
+  outline: none;
+  border: none;
+  font-family: "quicksand";
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+}
+
+.addNewButton:hover{
+  background-color: #55bb88;
 }
