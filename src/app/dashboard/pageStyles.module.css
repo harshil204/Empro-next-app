@@ -63,6 +63,10 @@
   color: white;
 }
 
-.addNewButton:hover{
+.addNewButton:hover {
   background-color: #55bb88;
+}
+
+.modalDesign {
+  background-color: #2B9A72;
 }
