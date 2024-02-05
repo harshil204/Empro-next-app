@@ -9,9 +9,10 @@ const page = () => {
     <>
       <div className={styles?.backImage}>
         <Header />
-
-        <h2 className={homeStyles?.tagLine}>Simplified Expense Management For Businesses</h2>
-        <Authform />
+        <div className={styles?.bgContainer}>
+          <h2 className={homeStyles?.tagLine}>Simplified Expense Management For Businesses</h2>
+          <Authform />
+        </div>
 
         <Footer />
       </div>

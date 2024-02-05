@@ -6,12 +6,20 @@
   background-repeat: no-repeat;
   position: fixed;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  overflow: auto;
+}
+
+.upperBodyContainer {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: self-end;
 }
 
 .headingContainer {
   width: 465px;
-  /* background-color: cadetblue; */
-  margin-left: 12.5%;
   margin-top: 30px;
   padding: 10px 0;
   border-bottom: 2px solid white;
@@ -22,4 +30,43 @@
   font-weight: 400;
   color: white;
   font-family: "quicksand";
+}
+
+.expensesContainer {
+  /* background-color: rgba(0, 255, 255, 0.26); */
+  margin: auto;
+  width: 75%;
+  height: auto;
+  margin: 25px auto;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 10px;
+  padding: 20px;
+}
+
+.addNewButton {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2B9A72;
+  outline: none;
+  border: none;
+  font-family: "quicksand";
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+}
+
+.addNewButton:hover {
+  background-color: #55bb88;
+}
+
+.modalDesign {
+  background-color: #2B9A72;
 }
