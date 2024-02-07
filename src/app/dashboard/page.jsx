@@ -1,13 +1,14 @@
-"use client"
+"use client";
 import Header from "@/components/Dashboard/Header";
 import styles from "./pageStyles.module.css";
 import ExpenseCard from "@/components/Dashboard/ExpenseCard";
 import { useState } from "react";
-import Sidebar from "@/components/Dashboard/Sidebar";
+import Sidebar from "@/components/Dashboard/Modal";
+import Footer from "@/components/Footer";
 
 const page = () => {
-  const [modal, setModal] = useState(false)
-  console.log("modal Status", modal)
+  const [modal, setModal] = useState(false);
+  console.log("modal Status", modal);
   return (
     <>
       <div className={styles?.main}>
@@ -22,8 +23,11 @@ const page = () => {
           <button
             className={styles?.addNewButton}
             onClick={() => {
-              setModal(!modal)
-            }}>Add new expense</button>
+              setModal(!modal);
+            }}
+          >
+            Add new expense
+          </button>
         </div>
         <div className={styles?.expensesContainer}>
           <ExpenseCard />
@@ -39,7 +43,7 @@ const page = () => {
           <ExpenseCard />
         </div>
       </div>
-
+      <Footer />
     </>
   );
 };

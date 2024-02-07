@@ -7,6 +7,9 @@
   position: fixed;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .upperBodyContainer {
@@ -34,10 +37,10 @@
 
 .expensesContainer {
   /* background-color: rgba(0, 255, 255, 0.26); */
-  margin: auto;
+  /* margin: auto; */
+  /* margin: 25px auto; */
   width: 75%;
   height: auto;
-  margin: 25px auto;
   display: grid;
   justify-items: center;
   align-items: center;
