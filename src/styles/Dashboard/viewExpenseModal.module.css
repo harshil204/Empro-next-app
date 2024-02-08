@@ -1,0 +1,136 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65),
+    rgba(32, 58, 67, 0.65),
+    rgba(0, 0, 0, 0.65)
+  );
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerContainer {
+  width: 55%;
+  height: 5%;
+  background: linear-gradient(
+    to right,
+    rgba(189, 195, 199, 0.5),
+    rgba(46, 70, 95, 0.5)
+  );
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeading {
+  font-family: "quicksand";
+  margin-left: 15px;
+  color: white;
+}
+
+.closeIconWrapper {
+  margin-right: 15px;
+}
+
+.innerContainer {
+  width: 55%;
+  height: 400px;
+  background: linear-gradient(
+    to right,
+    rgba(189, 195, 199, 0.5),
+    rgba(46, 70, 95, 0.5)
+  );
+  border-radius: 0 0 10px 10px;
+  color: white;
+  font-family: "quicksand";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upperContainer {
+  width: 80%;
+  height: 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 1.5fr 0.2fr 3fr;
+}
+
+.leftContainer {
+  width: 30%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.verticalLine {
+  height: 100%;
+  width: 1px;
+  background-color: white;
+}
+
+.image {
+  height: 100%;
+  width: 60%;
+  object-fit: contain;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 65%;
+}
+
+.lowerContainer {
+  width: 80%;
+  height: 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.expenseDesc {
+  width: 25%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.descContainer {
+  width: 75%;
+  height: 100%;
+}
+
+.statusButton {
+  width: 150px;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b9a72;
+}
+
+.reportedToText {
+  font-weight: 400;
+  font-size: 15px;
+  font-weight: 600;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 0.4px;
+}
+
+.dateText {
+  font-size: 15px;
+}

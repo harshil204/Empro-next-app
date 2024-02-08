@@ -3,16 +3,20 @@ import Header from "@/components/Dashboard/Header";
 import styles from "./pageStyles.module.css";
 import ExpenseCard from "@/components/Dashboard/ExpenseCard";
 import { useState } from "react";
-import Sidebar from "@/components/Dashboard/Modal";
+import Modal from "@/components/Dashboard/Modal";
 import Footer from "@/components/Footer";
+import ViewExpenseModal from "@/components/Dashboard/ViewExpenseModal";
 
 const page = () => {
-  const [modal, setModal] = useState(false);
-  console.log("modal Status", modal);
+  const [modal, setModal] = useState({
+    create: false,
+    view: false,
+  });
   return (
     <>
       <div className={styles?.main}>
-        {modal && <Sidebar modal={modal} setModal={setModal} />}
+        {modal?.view && <ViewExpenseModal modal={modal} setModal={setModal} />}
+        {modal?.create && <Modal modal={modal} setModal={setModal} />}
         <Header />
         <div className={styles?.upperBodyContainer}>
           <div className={styles?.headingContainer}>
@@ -23,24 +27,27 @@ const page = () => {
           <button
             className={styles?.addNewButton}
             onClick={() => {
-              setModal(!modal);
+              setModal({
+                ...modal,
+                create: true,
+              });
             }}
           >
             Add new expense
           </button>
         </div>
         <div className={styles?.expensesContainer}>
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
-          <ExpenseCard />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
+          <ExpenseCard modal={modal} setModal={setModal} />
         </div>
       </div>
       <Footer />

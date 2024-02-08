@@ -2,9 +2,9 @@ import styles from "../../styles/Dashboard/expenseCard.module.css"
 import receipt from "../../../public/img/receipt.png"
 import Image from "next/image"
 
-const ExpenseCard = () => {
+const ExpenseCard = ({ modal, setModal}) => {
     return (
-        <div className={styles?.container}>
+        <div className={styles?.container} onClick={() => setModal({...modal, view: true})}>
             <Image
                 className={styles?.image}
                 src={receipt}

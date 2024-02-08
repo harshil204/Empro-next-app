@@ -13,7 +13,10 @@ const Modal = ({ modal, setModal }) => {
               size={20}
               color={"#ffffff"}
               onClick={() => {
-                setModal(false);
+                setModal({
+                  create: false,
+                  view: false,
+                });
               }}
             />
           </div>
@@ -24,7 +27,7 @@ const Modal = ({ modal, setModal }) => {
               <div className={styles?.imageUploaderContainer}>
                 <div className={styles?.imageFrame}>
                   <input
-                  className={styles?.imageInput}
+                    className={styles?.imageInput}
                     type="file"
                     id="img"
                     name="img"
