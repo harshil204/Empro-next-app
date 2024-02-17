@@ -18,7 +18,7 @@ const ExpenseCard = ({ modal, setModal }) => {
         <span className={styles?.expenseDesc}>Trip Description</span>
         <div className={styles?.statusButton}>Aprooved</div>
         <span className={styles?.reportedToText}>
-          Reported To:- Vinesh Sharma (HR)
+          <b>Reported To</b>:- Vinesh Sharma (HR)
         </span>
       </div>
     </div>

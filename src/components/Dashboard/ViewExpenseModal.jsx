@@ -1,7 +1,7 @@
-import styles from "@/styles/Dashboard/viewExpenseModal.module.css";
 import { SlClose } from "react-icons/sl";
 import receipt from "../../../public/img/receipt.png";
 import Image from "next/image";
+import styles from "@/styles/Dashboard/viewExpenseModal.module.css";
 
 const ViewExpenseModal = ({ modal, setModal }) => {
   return (
@@ -33,7 +33,7 @@ const ViewExpenseModal = ({ modal, setModal }) => {
               <h2 className={styles?.expenseSubject}>Good Trip</h2>
               <div className={styles?.statusButton}>Aprooved</div>
               <span className={styles?.reportedToText}>
-                Reported To:- Vinesh Sharma (HR)
+                <b>Reported To</b>:- Vinesh Sharma (HR)
               </span>
             </div>
           </div>

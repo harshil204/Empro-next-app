@@ -13,7 +13,6 @@ const page = () => {
           <h2 className={homeStyles?.tagLine}>Simplified Expense Management For Businesses</h2>
           <Authform />
         </div>
-
         <Footer />
       </div>
     </>
