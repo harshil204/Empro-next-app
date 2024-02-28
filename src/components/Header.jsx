@@ -35,14 +35,14 @@ const Header = () => {
               </ul>
             </div>
 
-            <div className={styles?.burger}>
+            {/* <div className={styles?.burger}>
               <Divide
                 color="white"
                 onClick={() => {
                   setSideBar(!sideBar);
                 }}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

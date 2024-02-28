@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/authForm.module.css";
 import * as Yup from "yup";
 import { _passwordRegex_ } from "@/lib/regEx";
@@ -29,53 +29,59 @@ const Authform = () => {
       `${process?.env?.NEXT_PUBLIC_BASE_URL}user/login`,
       values
     );
-    console.log("respose ==>", res);
+
+    console.log("respose ==>", res?.status === 200);
+    if (res?.status === 200) {
+    }
   };
 
   return (
-    <div className={styles?.container}>
-      <h4 className={styles?.formHeading}>Login</h4>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ values, setFieldValue, errors, touched }) => (
-          <Form className={styles?.form}>
-            <div className={styles?.inputWrapper}>
-              <input
-                className={styles?.inputField}
-                type="text"
-                name="email"
-                id="email"
-                value={values?.email}
-                onChange={(e) => {
-                  setFieldValue("email", e?.target?.value);
-                }}
-                placeholder="Enter your email"
-              />
-              <ErrorMessage name="email" component={errorMessage} />
-            </div>
+    <>
+      <div className={styles?.container}>
+        <h4 className={styles?.formHeading}>Login</h4>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {({ values, setFieldValue, errors, touched }) => (
+            <Form className={styles?.form}>
+              {console.log("test ==> ", values)}
+              <div className={styles?.inputWrapper}>
+                <input
+                  className={styles?.inputField}
+                  type="text"
+                  name="email"
+                  id="email"
+                  value={values?.email}
+                  onChange={(e) => {
+                    setFieldValue("email", e?.target?.value);
+                  }}
+                  placeholder="Enter your email"
+                />
+                <ErrorMessage name="email" component={errorMessage} />
+              </div>
 
-            <div className={styles?.inputWrapper}>
-              <input
-                className={`${styles?.inputField} ${styles?.passwordField}`}
-                type="password"
-                name="password"
-                id="password"
-                value={values?.password}
-                onChange={(e) => {
-                  setFieldValue("password", e?.target?.value);
-                }}
-                placeholder="Enter your password"
-              />
-              <ErrorMessage name="password" component={errorMessage} />
-            </div>
-            <button className={styles?.submitFormButton}>Submit</button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+              <div className={styles?.inputWrapper}>
+                <input
+                  className={`${styles?.inputField} ${styles?.passwordField}`}
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={values?.password}
+                  onChange={(e) => {
+                    setFieldValue("password", e?.target?.value);
+                  }}
+                  placeholder="Enter your password"
+                />
+                <ErrorMessage name="password" component={errorMessage} />
+              </div>
+              <button className={styles?.submitFormButton}>Submit</button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </>
   );
 };
 
