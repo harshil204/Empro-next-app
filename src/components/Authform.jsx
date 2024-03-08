@@ -9,7 +9,7 @@ import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 
 const Authform = () => {
-  const { data: session } = useSession()
+  const { data: session, update: sessionUpdate } = useSession()
   console.log("Auth Form session --> ", session)
   const initialValues = {
     email: "",
@@ -32,14 +32,13 @@ const Authform = () => {
       `${process?.env?.NEXT_PUBLIC_BASE_URL}user/login`,
       values
     );
-
-    console.log("respose ==>", res?.status === 200);
     if (res?.status === 200) {
-      signIn({
-        email: res?.data,
-        password: '',
-        callbackUrl: '/dashboard'
-      })
+      console.log("first")
+      // signIn({
+      //   email: res?.data,
+      //   password: '',
+      //   callbackUrl: '/dashboard'
+      // })
     }
   };
 
