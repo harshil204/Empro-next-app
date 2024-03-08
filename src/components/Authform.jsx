@@ -6,8 +6,11 @@ import { _passwordRegex_ } from "@/lib/regEx";
 import { Form, Formik, ErrorMessage } from "formik";
 import errorMessage from "./errorMessage";
 import axios from "axios";
+import { signIn, useSession } from "next-auth/react";
 
 const Authform = () => {
+  const { data: session } = useSession()
+  console.log("Auth Form session --> ", session)
   const initialValues = {
     email: "",
     password: "",
@@ -32,6 +35,11 @@ const Authform = () => {
 
     console.log("respose ==>", res?.status === 200);
     if (res?.status === 200) {
+      signIn({
+        email: res?.data,
+        password: '',
+        callbackUrl: '/dashboard'
+      })
     }
   };
 
@@ -46,7 +54,6 @@ const Authform = () => {
         >
           {({ values, setFieldValue, errors, touched }) => (
             <Form className={styles?.form}>
-              {console.log("test ==> ", values)}
               <div className={styles?.inputWrapper}>
                 <input
                   className={styles?.inputField}
