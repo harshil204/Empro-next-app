@@ -6,12 +6,15 @@ import { useState } from "react";
 import Modal from "@/components/Dashboard/Modal";
 import Footer from "@/components/Footer";
 import ViewExpenseModal from "@/components/Dashboard/ViewExpenseModal";
+import { useSession } from "next-auth/react";
 
 const page = () => {
+  const { data: session, update: sessionUpdate } = useSession()
   const [modal, setModal] = useState({
     create: false,
     view: false,
   });
+  console.log("data => ", session)
   return (
     <>
       <div className={styles?.main}>

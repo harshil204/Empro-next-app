@@ -3,13 +3,14 @@ import logo from "../../../public/img/logo.png";
 import settingsIcon from "../../../public/icons/settings.png";
 import DeppDp from "../../../public/img/deppDp.jpg";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 
 const Header = () => {
   return (
     <div className={styles?.container}>
       <Image className={styles?.logo} src={logo} />
       <div className={styles?.contentContainer}>
-        <Image className={styles?.settingsIcon} src={settingsIcon} />
+        <Image className={styles?.settingsIcon} src={settingsIcon} onClick={() => signOut()} />
         <div className={styles?.empDetailContainer}>
           <div>
             <h4 className={`${styles?.fontWeight100} ${styles?.h4}`}>

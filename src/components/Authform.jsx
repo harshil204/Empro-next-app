@@ -1,14 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/authForm.module.css";
 import * as Yup from "yup";
 import { _passwordRegex_ } from "@/lib/regEx";
 import { Form, Formik, ErrorMessage } from "formik";
 import errorMessage from "./errorMessage";
 import axios from "axios";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Authform = () => {
+  const router = useRouter()
   const { data: session, update: sessionUpdate } = useSession()
   console.log("Auth Form session --> ", session)
   const initialValues = {
@@ -28,20 +30,22 @@ const Authform = () => {
 
   const onSubmit = async (values) => {
     console.log("Form has been submitted successfully", values);
-    const res = await axios?.post(
-      `${process?.env?.NEXT_PUBLIC_BASE_URL}user/login`,
-      values
-    );
-    if (res?.status === 200) {
-      console.log("first")
-      // signIn({
-      //   email: res?.data,
-      //   password: '',
-      //   callbackUrl: '/dashboard'
-      // })
+    try {
+      await signIn('credentials',{
+        email: values?.email,
+        password: values?.password,
+        redirect:false,
+      })
+    } catch (error) {
+      console.error("Something went wrong")
     }
   };
-
+  useEffect(() => {
+   if(session){
+    router.push("/dashboard")
+   }
+  }, [session])
+  
   return (
     <>
       <div className={styles?.container}>
