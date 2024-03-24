@@ -8,7 +8,7 @@ const ExpenseCard = ({ modal, setModal }) => {
       className={styles?.container}
       onClick={() => setModal({ ...modal, view: true })}
     >
-      <Image className={styles?.image} src={receipt} />
+      <Image className={styles?.image} src={receipt} alt="Expense receipt" />
 
       <div className={styles?.verticalLine}></div>
 

@@ -25,7 +25,7 @@ const ViewExpenseModal = ({ modal, setModal }) => {
         <div className={styles?.innerContainer}>
           <div className={styles?.upperContainer}>
             <div className={styles?.leftContainer}>
-              <Image className={styles?.image} src={receipt} />
+              <Image className={styles?.image} src={receipt} alt="Expense receipt" />
               <div className={styles?.verticalLine}></div>
             </div>
             <div className={styles?.rightContent}>

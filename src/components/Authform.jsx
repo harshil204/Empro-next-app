@@ -6,13 +6,13 @@ import { _passwordRegex_ } from "@/lib/regEx";
 import { Form, Formik, ErrorMessage } from "formik";
 import errorMessage from "./errorMessage";
 import axios from "axios";
-import { signIn, signOut, useSession } from "next-auth/react";
+import nookies from "nookies";
 import { useRouter } from "next/navigation";
 
 const Authform = () => {
-  const router = useRouter()
-  const { data: session, update: sessionUpdate } = useSession()
-  console.log("Auth Form session --> ", session)
+  const router = useRouter();
+  // const { data: session, update: sessionUpdate } = useSession()
+  // console.log("Auth Form session --> ", session)
   const initialValues = {
     email: "",
     password: "",
@@ -31,21 +31,27 @@ const Authform = () => {
   const onSubmit = async (values) => {
     console.log("Form has been submitted successfully", values);
     try {
-      await signIn('credentials',{
+      const res = await axios.post(`http://localhost:5000/api/user/login`, {
         email: values?.email,
         password: values?.password,
-        redirect:false,
-      })
+      });
+
+      if (res?.status === 200) {
+        nookies?.set(null, "auth", res?.data?.token, {
+          maxAge: 7 * 24 * 60 * 60,
+          path: "/",
+        });
+        nookies?.set(null, "userData", JSON.stringify(res?.data?.user), {
+          maxAge: 7 * 24 * 60 * 60,
+          path: "/",
+        });
+        console.log("Cookies has been setted successfully");
+      }
     } catch (error) {
-      console.error("Something went wrong")
+      console.error("Something went wrong");
     }
   };
-  useEffect(() => {
-   if(session){
-    router.push("/dashboard")
-   }
-  }, [session])
-  
+
   return (
     <>
       <div className={styles?.container}>
