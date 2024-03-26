@@ -4,7 +4,7 @@ import settingsIcon from "../../../public/icons/settings.png";
 import DeppDp from "../../../public/img/deppDp.jpg";
 import Image from "next/image";
 import Nookies from "nookies";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 

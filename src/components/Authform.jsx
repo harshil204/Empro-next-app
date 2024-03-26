@@ -6,13 +6,11 @@ import { _passwordRegex_ } from "@/lib/regEx";
 import { Form, Formik, ErrorMessage } from "formik";
 import errorMessage from "./errorMessage";
 import axios from "axios";
-import nookies from "nookies";
+import Nookies from "nookies";
 import { useRouter } from "next/navigation";
 
 const Authform = () => {
   const router = useRouter();
-  // const { data: session, update: sessionUpdate } = useSession()
-  // console.log("Auth Form session --> ", session)
   const initialValues = {
     email: "",
     password: "",
@@ -37,15 +35,15 @@ const Authform = () => {
       });
 
       if (res?.status === 200) {
-        nookies?.set(null, "auth", res?.data?.token, {
+        Nookies?.set(null, "auth", res?.data?.token, {
           maxAge: 7 * 24 * 60 * 60,
           path: "/",
         });
-        nookies?.set(null, "userData", JSON.stringify(res?.data?.user), {
+        Nookies?.set(null, "userData", JSON.stringify(res?.data?.user), {
           maxAge: 7 * 24 * 60 * 60,
           path: "/",
         });
-        console.log("Cookies has been setted successfully");
+        router?.push("/dashboard");
       }
     } catch (error) {
       console.error("Something went wrong");
