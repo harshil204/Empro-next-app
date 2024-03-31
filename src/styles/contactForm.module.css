@@ -22,7 +22,7 @@
 .form {
   /* background-color: rgba(0, 255, 255, 0.349); */
   width: 400px;
-  min-height: 300px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -31,6 +31,8 @@
 
 .list {
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .inputField {
@@ -43,7 +45,7 @@
   border-bottom: 1px solid white;
   color: white;
   letter-spacing: 2px;
-  margin: 15px auto;
+  /* margin: 15px auto; */
 }
 
 .inputField::placeholder {
@@ -51,7 +53,7 @@
 }
 
 .textarea {
-  margin: 15px auto;
+  /* margin: 15px auto; */
   width: 340px;
   padding: 5px 0;
   background-color: transparent;
