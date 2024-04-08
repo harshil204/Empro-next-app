@@ -3,7 +3,7 @@ import logo from "../../../public/img/logo.png";
 import settingsIcon from "../../../public/icons/settings.png";
 import DeppDp from "../../../public/img/deppDp.jpg";
 import Image from "next/image";
-import Nookies from "nookies";
+import Nookies, { destroyCookie } from "nookies";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -11,6 +11,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const Header = () => {
   const userCookie = Nookies.get("userData")?.userData;
   const [user, setUser] = useState(false);
+  const [settings, setSettings] = useState(false);
   useEffect(() => {
     if (userCookie) {
       setUser(JSON?.parse(userCookie));
@@ -22,9 +23,11 @@ const Header = () => {
       <Image className={styles?.logo} src={logo} alt="Logo" />
       <div className={styles?.contentContainer}>
         <Image
-          className={styles?.settingsIcon}
+          className={`${styles?.settingsIcon} ${settings && styles?.rotate45}`}
           src={settingsIcon}
-          onClick={() => console.log("sign out call")}
+          onClick={() => {
+            setSettings(!settings);
+          }}
           alt="Settings icon"
         />
         {user ? (

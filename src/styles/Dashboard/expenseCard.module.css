@@ -56,11 +56,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
+}
+
+.success {
   background-color: #2b9a72;
 }
 
+.warning {
+  background-color: #c7b604;
+}
+
+.danger {
+  background-color: #F32013;
+}
+
 .statusButton:hover {
-  background-color: #55bb88;
+  /* background-color: #55bb88; */
+  opacity: 0.8;
 }
 
 .reportedToText {

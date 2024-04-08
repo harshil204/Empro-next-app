@@ -44,8 +44,6 @@ const ContactUs = () => {
       >
         {({ values, setFieldValue, errors, touched }) => (
           <Form className={styles?.form}>
-            {console.log("check Values ==>?", values)}
-            {console.log("check errors ==>?", errors)}
             <li className={styles?.list}>
               <input
                 className={styles?.inputField}

@@ -1,12 +1,17 @@
 import styles from "../../styles/Dashboard/modal.module.css";
 import { SlClose } from "react-icons/sl";
 import { FaCirclePlus } from "react-icons/fa6";
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
 import { useState } from "react";
+import axios from "axios";
+import Nookies from "nookies";
+import { createFormData } from "@/lib/globalFunction";
+import errorMessage from "../errorMessage";
 
-const Modal = ({ modal, setModal }) => {
+const Modal = ({ modal, setModal, fetchData }) => {
+  const token = Nookies.get()?.auth;
   const [image, setImage] = useState(false);
   const initialValues = {
     receipt_img: "",
@@ -16,7 +21,7 @@ const Modal = ({ modal, setModal }) => {
     expenseCategory: "",
   };
   const validationSchema = Yup?.object()?.shape({
-    receipt_img: Yup?.object()?.required("Receipt image is required"),
+    receipt_img: Yup?.string()?.required("Receipt image is required"),
     title: Yup?.string()?.required("Title is required"),
     description: Yup?.string()?.required("Description is required"),
     amount: Yup?.number("Amount must be a number")?.required(
@@ -25,7 +30,26 @@ const Modal = ({ modal, setModal }) => {
     expenseCategory: Yup?.string()?.required("Expense Category is required"),
   });
   const onSubmit = async (values) => {
-    console.log("Form has been submitted successfully ==> ", values);
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const formData = createFormData(values);
+      const res = await axios.post(
+        `${process?.env?.NEXT_PUBLIC_BASE_URL}expenses`,
+        formData,
+        config
+      );
+      if (res?.status === 200) {
+        alert("Expense has been created");
+        fetchData();
+        setModal(false);
+      }
+    } catch (error) {
+      console.error("Something went wrong");
+    }
   };
 
   const handleImageUpload = (e) => {
@@ -65,7 +89,7 @@ const Modal = ({ modal, setModal }) => {
         >
           {({ values, setFieldValue, errors, touched }) => (
             <div className={`${styles?.innerContainer} `}>
-              {console.log("values ==>", values)}
+              {console.log("errors ==>", errors)}
               <Form className={styles?.form}>
                 <div className={styles?.upperSection}>
                   <div className={styles?.imageUploaderContainer}>
@@ -92,19 +116,21 @@ const Modal = ({ modal, setModal }) => {
                         <FaCirclePlus color="white" size={28} />
                       </div>
                     )}
+                    <ErrorMessage name="receipt_img" component={errorMessage} />
                   </div>
                   <div className={styles?.inputFieldsContainer}>
                     <input
                       className={styles?.inputField}
                       type="text"
-                      name="Title"
-                      id="Title"
+                      name="title"
+                      id="title"
                       placeholder="Enter Title"
                       value={values?.title}
                       onChange={(e) => {
                         setFieldValue("title", e?.target?.value);
                       }}
                     />
+                    <ErrorMessage name="title" component={errorMessage} />
                     <input
                       className={styles?.inputField}
                       type="text"
@@ -116,6 +142,7 @@ const Modal = ({ modal, setModal }) => {
                         setFieldValue("description", e?.target?.value);
                       }}
                     />
+                    <ErrorMessage name="description" component={errorMessage} />
                     <input
                       className={styles?.inputField}
                       type="text"
@@ -127,16 +154,17 @@ const Modal = ({ modal, setModal }) => {
                         setFieldValue("amount", e?.target?.value);
                       }}
                     />
+                    <ErrorMessage name="amount" component={errorMessage} />
                   </div>
                 </div>
                 <div className={styles?.checkboxContainer}>
                   <div className={styles?.checkboxGroup}>
-                    <label htmlFor="category">Travel</label>
+                    <label htmlFor="travel">Travel</label>
                     <input
                       className={styles?.checkbox}
                       type="checkbox"
                       name="category"
-                      id="category"
+                      id="travel"
                       value="travel"
                       onChange={() => {
                         setFieldValue("expenseCategory", "travel");
@@ -144,12 +172,12 @@ const Modal = ({ modal, setModal }) => {
                     />
                   </div>
                   <div className={styles?.checkboxGroup}>
-                    <label htmlFor="category">Food</label>
+                    <label htmlFor="food">Food</label>
                     <input
                       className={styles?.checkbox}
                       type="checkbox"
                       name="category"
-                      id="category"
+                      id="food"
                       value="food"
                       onChange={() => {
                         setFieldValue("expenseCategory", "food");
@@ -157,12 +185,12 @@ const Modal = ({ modal, setModal }) => {
                     />
                   </div>
                   <div className={styles?.checkboxGroup}>
-                    <label htmlFor="category">Training</label>
+                    <label htmlFor="training">Training</label>
                     <input
                       className={styles?.checkbox}
                       type="checkbox"
                       name="category"
-                      id="category"
+                      id="training"
                       value="training"
                       onChange={() => {
                         setFieldValue("expenseCategory", "training");
@@ -170,12 +198,12 @@ const Modal = ({ modal, setModal }) => {
                     />
                   </div>
                   <div className={styles?.checkboxGroup}>
-                    <label htmlFor="category">Accomodation</label>
+                    <label htmlFor="accomodation">Accomodation</label>
                     <input
                       className={styles?.checkbox}
                       type="checkbox"
                       name="category"
-                      id="category"
+                      id="accomodation"
                       value="accomodation"
                       onChange={() => {
                         setFieldValue("expenseCategory", "Accomodation");
@@ -183,12 +211,12 @@ const Modal = ({ modal, setModal }) => {
                     />
                   </div>
                   <div className={styles?.checkboxGroup}>
-                    <label htmlFor="category">Misc</label>
+                    <label htmlFor="misc">Misc</label>
                     <input
                       className={styles?.checkbox}
                       type="checkbox"
                       name="category"
-                      id="category"
+                      id="misc"
                       value="misc"
                       onChange={() => {
                         setFieldValue("expenseCategory", "misc");
@@ -196,12 +224,12 @@ const Modal = ({ modal, setModal }) => {
                     />
                   </div>
                   <div className={styles?.checkboxGroup}>
-                    <label htmlFor="category">Softwere Purchase</label>
+                    <label htmlFor="software purchase">Softwere Purchase</label>
                     <input
                       className={styles?.checkbox}
                       type="checkbox"
                       name="category"
-                      id="category"
+                      id="software purchase"
                       value="software purchase"
                       onChange={() => {
                         setFieldValue("expenseCategory", "software-purchase");
@@ -209,7 +237,10 @@ const Modal = ({ modal, setModal }) => {
                     />
                   </div>
                 </div>
-                <button className={styles?.submitFormButton}>Submit</button>
+
+                <button type="submit" className={styles?.submitFormButton}>
+                  Submit
+                </button>
               </Form>
             </div>
           )}
