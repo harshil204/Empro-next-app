@@ -36,12 +36,13 @@ const Modal = ({ modal, setModal, fetchData }) => {
           Authorization: `Bearer ${token}`,
         },
       };
+      
       const formData = createFormData(values);
       const res = await axios.post(
         `${process?.env?.NEXT_PUBLIC_BASE_URL}expenses`,
         formData,
         config
-      );
+      ); 
       if (res?.status === 200) {
         alert("Expense has been created");
         fetchData();
@@ -89,7 +90,6 @@ const Modal = ({ modal, setModal, fetchData }) => {
         >
           {({ values, setFieldValue, errors, touched }) => (
             <div className={`${styles?.innerContainer} `}>
-              {console.log("errors ==>", errors)}
               <Form className={styles?.form}>
                 <div className={styles?.upperSection}>
                   <div className={styles?.imageUploaderContainer}>

@@ -38,7 +38,9 @@ const page = () => {
     <>
       <div className={styles?.main}>
         {modal?.view && <ViewExpenseModal modal={modal} setModal={setModal} />}
-        {modal?.create && <Modal modal={modal} setModal={setModal} fetchData={fetchData} />}
+        {modal?.create && (
+          <Modal modal={modal} setModal={setModal} fetchData={fetchData} />
+        )}
 
         <Header />
 
@@ -62,9 +64,14 @@ const page = () => {
         </div>
         <div className={styles?.expensesContainer}>
           {data?.data?.length > 0 &&
-            data?.data?.map((expense) => (
+            data?.data?.map((expense, index) => (
               <>
-                <ExpenseCard modal={modal} setModal={setModal} data={expense} />
+                <ExpenseCard
+                  key={index}
+                  modal={modal}
+                  setModal={setModal}
+                  data={expense}
+                />
               </>
             ))}
         </div>

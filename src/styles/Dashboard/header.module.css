@@ -30,12 +30,12 @@
 .settingsIcon {
   width: 20px;
   height: 20px;
+  position: relative;
   transition: all 0.5s ease;
 }
 
-
 .rotate45 {
-      transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .empDetailContainer {
@@ -72,4 +72,54 @@
 }
 .h5 {
   font-size: 10px;
+}
+
+.settingContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.none {
+  position: absolute;
+  width: 160px;
+  height: 50px;
+  margin-top: 25px;
+  list-style: none;
+  display: flex;
+  padding: 5px;
+  border-radius: 15px;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: #1c1c1c7e;
+  width: 175px;
+  height: 85px;
+  margin-top: 25px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 5px;
+  border-radius: 15px;
+  transition: all 0.5s ease;
+}
+
+.noneli {
+  display: none;
+  padding: 10px;
+}
+.dropdownLi {
+  display: block;
+  padding: 10px;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+}
+.dropdownLi:hover {
+  cursor: pointer;
+
+  background-color: #2b9a72;
+  opacity: 0.9;
 }

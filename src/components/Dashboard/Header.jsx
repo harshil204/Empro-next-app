@@ -7,8 +7,11 @@ import Nookies, { destroyCookie } from "nookies";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import defaultUser from "../../../public/img/defaultUser.png";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router=  useRouter()
   const userCookie = Nookies.get("userData")?.userData;
   const [user, setUser] = useState(false);
   const [settings, setSettings] = useState(false);
@@ -22,14 +25,36 @@ const Header = () => {
     <div className={styles?.container}>
       <Image className={styles?.logo} src={logo} alt="Logo" />
       <div className={styles?.contentContainer}>
-        <Image
-          className={`${styles?.settingsIcon} ${settings && styles?.rotate45}`}
-          src={settingsIcon}
-          onClick={() => {
-            setSettings(!settings);
-          }}
-          alt="Settings icon"
-        />
+        <div className={styles?.settingContainer}>
+          <Image
+            className={`${styles?.settingsIcon} ${
+              settings && styles?.rotate45
+            }`}
+            src={settingsIcon}
+            onClick={() => {
+              setSettings(!settings);
+            }}
+            alt="Settings icon"
+          />
+
+          <ul className={`${styles?.none} ${settings && styles?.dropdown}`}>
+            <li
+              className={`${styles?.noneli} ${settings && styles?.dropdownLi}`}
+            >
+              Edit Profile
+            </li>
+            <li
+              className={`${styles?.noneli} ${settings && styles?.dropdownLi}`}
+              onClick={() => {
+                destroyCookie(null, "auth");
+                destroyCookie(null, "userData");
+                router.push("/")
+              }}
+            >
+              Logout
+            </li>
+          </ul>
+        </div>
         {user ? (
           <div className={styles?.empDetailContainer}>
             <div>
@@ -52,11 +77,14 @@ const Header = () => {
             highlightColor="#cfcfcf80"
           />
         )}
-
         {user ? (
           <Image
             className={styles?.dp}
-            src={`${process?.env?.NEXT_PUBLIC_RESOURCE_URL}${user?.profile_img}`}
+            src={
+              user?.profile_img
+                ? process?.env?.NEXT_PUBLIC_RESOURCE_URL + user?.profile_img
+                : defaultUser
+            }
             width={100}
             height={100}
             alt="Display picture"
