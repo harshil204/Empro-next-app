@@ -25,14 +25,16 @@ const ExpenseCard = ({ modal, setModal, data }) => {
           {data?.amount}
         </span>
         <div
-          style={{ backgroundColor: statusColor(data?.status) }}
+          style={{ backgroundColor: statusColor(data?.status.toLowerCase()) }}
           className={styles?.statusButton}
         >
           {data?.status?.toUpperCase()}
         </div>
-        <span className={styles?.reportedToText}>
-          <b>Reported To</b>:- Vinesh Sharma (HR)
-        </span>
+        {data?.reportedBy && (
+          <span className={styles?.reportedToText}>
+            <b>Reported To</b>:- {data?.reportedBy}
+          </span>
+        )}
       </div>
     </div>
   );

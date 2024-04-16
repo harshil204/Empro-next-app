@@ -8,8 +8,13 @@ import errorMessage from "./errorMessage";
 import axios from "axios";
 import Nookies from "nookies";
 import { useRouter } from "next/navigation";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { notify } from "@/lib/globalFunction";
+import Loader from "./Loader";
 
 const Authform = () => {
+  const [loader, setLoader] = useState(false);
   const router = useRouter();
   const initialValues = {
     email: "",
@@ -27,7 +32,7 @@ const Authform = () => {
   });
 
   const onSubmit = async (values) => {
-    console.log("Form has been submitted successfully", values);
+    setLoader(true);
     try {
       const res = await axios.post(`http://localhost:5000/api/user/login`, {
         email: values?.email,
@@ -43,16 +48,23 @@ const Authform = () => {
           maxAge: 7 * 24 * 60 * 60,
           path: "/",
         });
-        router?.push("/dashboard");
+        notify(true, `${res?.data?.user?.role} logged-in successfully`);
+        setLoader(false);
+        setTimeout(() => {
+          router?.push("/dashboard");
+        }, 1000);
       }
     } catch (error) {
-      console.error("Something went wrong");
+      setLoader(false);
+      notify(false, `something went wrong`);
     }
   };
 
   return (
     <>
       <div className={styles?.container}>
+        <ToastContainer />
+        {loader && <Loader />}
         <h4 className={styles?.formHeading}>Login</h4>
         <Formik
           initialValues={initialValues}

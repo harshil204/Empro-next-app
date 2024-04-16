@@ -9,8 +9,13 @@ import axios from "axios";
 import Nookies from "nookies";
 import { createFormData } from "@/lib/globalFunction";
 import errorMessage from "../errorMessage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { notify } from "@/lib/globalFunction";
+import Loader from "../Loader";
 
 const Modal = ({ modal, setModal, fetchData }) => {
+  const [loader, setLoader] = useState(false);
   const token = Nookies.get()?.auth;
   const [image, setImage] = useState(false);
   const initialValues = {
@@ -30,26 +35,31 @@ const Modal = ({ modal, setModal, fetchData }) => {
     expenseCategory: Yup?.string()?.required("Expense Category is required"),
   });
   const onSubmit = async (values) => {
+    setLoader(true);
     try {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-      
+
       const formData = createFormData(values);
       const res = await axios.post(
         `${process?.env?.NEXT_PUBLIC_BASE_URL}expenses`,
         formData,
         config
-      ); 
+      );
       if (res?.status === 200) {
-        alert("Expense has been created");
+        notify(true, "Expense requested successfully", 800);
         fetchData();
-        setModal(false);
+        setLoader(false);
+        setTimeout(() => {
+          setModal(false);
+        }, 1500);
       }
     } catch (error) {
-      console.error("Something went wrong");
+      setLoader(false);
+      notify(true, "Something went wrong");
     }
   };
 
@@ -68,6 +78,8 @@ const Modal = ({ modal, setModal, fetchData }) => {
   return (
     <>
       <div className={styles?.container}>
+        <ToastContainer />
+        {loader && <Loader />}
         <div className={styles?.headerContainer}>
           <h3 className={styles?.modalHeading}>Add New Expense</h3>
           <div className={styles?.closeIconWrapper}>

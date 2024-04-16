@@ -15,6 +15,7 @@ const page = () => {
     view: false,
   });
   const [data, setData] = useState(false);
+
   const fetchData = async () => {
     try {
       const res = await axios.get(
@@ -37,7 +38,13 @@ const page = () => {
   return (
     <>
       <div className={styles?.main}>
-        {modal?.view && <ViewExpenseModal modal={modal} setModal={setModal} />}
+        {modal?.view && (
+          <ViewExpenseModal
+            modal={modal}
+            setModal={setModal}
+            fetchData={fetchData}
+          />
+        )}
         {modal?.create && (
           <Modal modal={modal} setModal={setModal} fetchData={fetchData} />
         )}
@@ -65,14 +72,12 @@ const page = () => {
         <div className={styles?.expensesContainer}>
           {data?.data?.length > 0 &&
             data?.data?.map((expense, index) => (
-              <>
-                <ExpenseCard
-                  key={index}
-                  modal={modal}
-                  setModal={setModal}
-                  data={expense}
-                />
-              </>
+              <ExpenseCard
+                key={index}
+                modal={modal}
+                setModal={setModal}
+                data={expense}
+              />
             ))}
         </div>
       </div>

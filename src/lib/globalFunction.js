@@ -1,4 +1,5 @@
 import Nookies from "nookies";
+import { toast } from "react-toastify";
 
 export const createFormData = (values) => {
   const formData = new FormData();
@@ -28,5 +29,31 @@ export const statusColor = (status) => {
     case "aprooved":
       return "#2b9a72";
       break;
+  }
+};
+
+export const notify = (status = false, message, time = 1500) => {
+  if (status) {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: time,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  } else {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 };
