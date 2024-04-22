@@ -49,7 +49,6 @@ const Authform = () => {
           path: "/",
         });
         notify(true, `${res?.data?.user?.role} logged-in successfully`);
-        setLoader(false);
         setTimeout(() => {
           router?.push("/dashboard");
         }, 1000);

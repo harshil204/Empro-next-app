@@ -96,7 +96,7 @@
   position: absolute;
   background-color: #1c1c1c7e;
   width: 175px;
-  height: 85px;
+
   margin-top: 25px;
   list-style: none;
   display: flex;
@@ -123,3 +123,4 @@
   background-color: #2b9a72;
   opacity: 0.9;
 }
+

@@ -12,10 +12,12 @@ import { useRouter } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { notify } from "@/lib/globalFunction";
+import Loader from "../Loader";
 
 const Header = () => {
   const router = useRouter();
   const userCookie = Nookies.get("userData")?.userData;
+  const [loader, setLoader] = useState(false);
   const [user, setUser] = useState(false);
   const [settings, setSettings] = useState(false);
   useEffect(() => {
@@ -26,6 +28,7 @@ const Header = () => {
 
   return (
     <>
+      {loader && <Loader />}
       <div className={styles?.container}>
         <Image className={styles?.logo} src={logo} alt="Logo" />
         <div className={styles?.contentContainer}>
@@ -47,14 +50,8 @@ const Header = () => {
                 className={`${styles?.noneli} ${
                   settings && styles?.dropdownLi
                 }`}
-              >
-                Edit Profile
-              </li>
-              <li
-                className={`${styles?.noneli} ${
-                  settings && styles?.dropdownLi
-                }`}
                 onClick={() => {
+                  setLoader(true);
                   notify(true, "logged-out successfully");
                   destroyCookie(null, "auth");
                   destroyCookie(null, "userData");

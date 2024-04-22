@@ -8,9 +8,11 @@ import Footer from "@/components/Footer";
 import ViewExpenseModal from "@/components/Dashboard/ViewExpenseModal";
 import axios from "axios";
 import { getConfig } from "@/lib/globalFunction";
+import CreateUserModal from "@/components/Dashboard/CreateUserModal";
 
 const page = () => {
   const [modal, setModal] = useState({
+    createUser: false,
     create: false,
     view: false,
   });
@@ -49,6 +51,10 @@ const page = () => {
           <Modal modal={modal} setModal={setModal} fetchData={fetchData} />
         )}
 
+        {modal?.createUser && (
+          <CreateUserModal modal={modal} setModal={setModal} />
+        )}
+
         <Header />
 
         <div className={styles?.upperBodyContainer}>
@@ -57,17 +63,30 @@ const page = () => {
               Your Expenses For The Month Of January
             </h1>
           </div>
-          <button
-            className={styles?.addNewButton}
-            onClick={() => {
-              setModal({
-                ...modal,
-                create: true,
-              });
-            }}
-          >
-            Add new expense
-          </button>
+          <div className={styles?.buttonContainer}>
+            <button
+              className={styles?.addNewButton}
+              onClick={() => {
+                setModal({
+                  ...modal,
+                  createUser: true,
+                });
+              }}
+            >
+              Create User
+            </button>
+            <button
+              className={styles?.addNewButton}
+              onClick={() => {
+                setModal({
+                  ...modal,
+                  create: true,
+                });
+              }}
+            >
+              Add new expense
+            </button>
+          </div>
         </div>
         <div className={styles?.expensesContainer}>
           {data?.data?.length > 0 &&

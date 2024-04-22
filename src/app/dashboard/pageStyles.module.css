@@ -15,7 +15,6 @@
   grid-template-columns: auto;
 }
 
-
 .upperBodyContainer {
   width: 75%;
   margin: auto;
@@ -56,13 +55,13 @@
 }
 
 .addNewButton {
-  width: 150px;
+  width: 140px;
   height: 40px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2B9A72;
+  background-color: #2b9a72;
   outline: none;
   border: none;
   font-family: "quicksand";
@@ -76,5 +75,11 @@
 }
 
 .modalDesign {
-  background-color: #2B9A72;
+  background-color: #2b9a72;
+}
+
+.buttonContainer {
+  justify-content: space-around;
+  width: 300px;
+  display: flex;
 }

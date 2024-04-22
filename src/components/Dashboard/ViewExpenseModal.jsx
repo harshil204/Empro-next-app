@@ -10,8 +10,11 @@ import Nookies from "nookies";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { notify } from "@/lib/globalFunction";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Loader";
+import { SlideshowLightbox } from "lightbox.js-react";
+import "lightbox.js-react/dist/index.css";
+import noImage from "../../../public/img/noImage.jpg";
 
 const ViewExpenseModal = ({ modal, setModal, fetchData }) => {
   const [loader, setLoader] = useState(false);
@@ -33,6 +36,9 @@ const ViewExpenseModal = ({ modal, setModal, fetchData }) => {
       backgroundColor: statusColor(modal?.data?.status.toLowerCase()),
       border: "none",
     }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return { ...styles, color: "#000000" };
+    },
   };
 
   const statusUpdate = async (status) => {
@@ -96,11 +102,26 @@ const ViewExpenseModal = ({ modal, setModal, fetchData }) => {
         <div className={styles?.innerContainer}>
           <div className={styles?.upperContainer}>
             <div className={styles?.leftContainer}>
-              <Image
+              <SlideshowLightbox
+                lightboxIdentifier="lightbox2"
+                framework="next"
+                images={[
+                  `${process?.env?.NEXT_PUBLIC_RESOURCE_URL}${modal?.data?.receipt_img}`,
+                ]}
+                showThumbnails={true}
+                iconColor={"#ffffff"}
                 className={styles?.image}
-                src={receipt}
-                alt="Expense receipt"
-              />
+              >
+                <Image
+                  src={`${process?.env?.NEXT_PUBLIC_RESOURCE_URL}${modal?.data?.receipt_img}`}
+                  alt={"receipt-img"}
+                  width={160}
+                  height={100}
+                  quality={100}
+                  sizes="100vw"
+                  data-lightboxjs="lightbox2"
+                />
+              </SlideshowLightbox>
               <div className={styles?.verticalLine}></div>
             </div>
             <div className={styles?.rightContent}>
@@ -139,6 +160,12 @@ const ViewExpenseModal = ({ modal, setModal, fetchData }) => {
                   <b>Reported To</b>:- {modal?.data?.reportedBy}
                 </span>
               )}
+              {user?.role?.toLowerCase() !== "developer" &&
+                modal?.data?.createdBy && (
+                  <span className={styles?.reportedToText}>
+                    <b>Created By</b>:- {modal?.data?.createdBy}
+                  </span>
+                )}
             </div>
           </div>
 
