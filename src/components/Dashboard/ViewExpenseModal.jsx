@@ -130,9 +130,12 @@ const ViewExpenseModal = ({ modal, setModal, fetchData }) => {
                 {moment(modal?.data?.createdAt).format("DD-MM-YYYY")}
               </p>
               <h2 className={styles?.expenseSubject}>{modal?.data?.title}</h2>
+              <h2 className={styles?.expenseSubject}>
+                {"₹" + modal?.data?.amount}
+              </h2>
 
               {/* status Label */}
-              {user?.role?.toLowerCase() === "developer" ? (
+              {user?.role?.toLowerCase() === "employee" ? (
                 <div
                   className={styles?.statusButton}
                   style={{ backgroundColor: statusColor(modal?.data?.status) }}

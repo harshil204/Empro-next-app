@@ -67,20 +67,21 @@ const CreateUserModal = ({ modal, setModal }) => {
     profile_img: Yup?.string()?.required("Image is required"),
   });
   const onSubmit = async (values) => {
-    console.log("Submitted Values ==> ", values);
+    setLoader(true);
     try {
       const formData = createFormData(values);
       const res = await axios.post(
         `${process?.env?.NEXT_PUBLIC_BASE_URL}user/register`,
         formData
       );
-      if (res?.status === 200) {
+      if (res?.status === 201) {
         notify(true, "Expense requested successfully", 800);
         setTimeout(() => {
           setModal(false);
         }, 1500);
       }
     } catch (error) {
+      setLoader(false);
       notify(true, "Something went wrong");
     }
   };

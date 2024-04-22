@@ -9,8 +9,11 @@ import ViewExpenseModal from "@/components/Dashboard/ViewExpenseModal";
 import axios from "axios";
 import { getConfig } from "@/lib/globalFunction";
 import CreateUserModal from "@/components/Dashboard/CreateUserModal";
+import Nookies from "nookies";
 
 const page = () => {
+  const userCookie = Nookies.get("userData")?.userData;
+  const [user, setUser] = useState(false);
   const [modal, setModal] = useState({
     createUser: false,
     create: false,
@@ -37,6 +40,11 @@ const page = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (userCookie) {
+      setUser(JSON?.parse(userCookie));
+    }
+  }, [userCookie]);
   return (
     <>
       <div className={styles?.main}>
@@ -64,17 +72,19 @@ const page = () => {
             </h1>
           </div>
           <div className={styles?.buttonContainer}>
-            <button
-              className={styles?.addNewButton}
-              onClick={() => {
-                setModal({
-                  ...modal,
-                  createUser: true,
-                });
-              }}
-            >
-              Create User
-            </button>
+            {user?.role?.toLowerCase() === "admin" && (
+              <button
+                className={styles?.addNewButton}
+                onClick={() => {
+                  setModal({
+                    ...modal,
+                    createUser: true,
+                  });
+                }}
+              >
+                Create User
+              </button>
+            )}
             <button
               className={styles?.addNewButton}
               onClick={() => {
